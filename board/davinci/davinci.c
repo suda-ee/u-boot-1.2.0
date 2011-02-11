@@ -355,8 +355,15 @@ int misc_init_r (void)
         printf ("ARM Clock :- %dMHz\n", ((((PLL1_PLLM + 1) * 27 ) / 2)));
         printf ("DDR Clock :- %dMHz\n", (clk/2));
 
-	i2c_write (0x50, 0x00, 1, emac_read_addr, 2);
-	i2c_read (0x50, 0x00, 1, emac_read_addr, 6);
+	//i2c_write (0x50, 0x00, 1, emac_read_addr, 2);
+	//i2c_read (0x50, 0x00, 1, emac_read_addr, 6);
+        emac_read_addr[0]=0x00;
+        emac_read_addr[1]=0x0e;
+        emac_read_addr[2]=0x99;
+        emac_read_addr[3]=0x02;
+        emac_read_addr[4]=0x50;
+        emac_read_addr[5]=0x18;
+
         temp[0] = (emac_read_addr[0] & 0xF0) >> 4;
         temp[1] = (emac_read_addr[0] & 0x0F);
         temp[2] = ':';
@@ -393,16 +400,16 @@ int misc_init_r (void)
 	    (emac_read_addr [4] != 0xFF) ||	
 	    (emac_read_addr [5] != 0xFF))
 	{ 
-		setenv ("ethaddr", temp);
+		//setenv ("ethaddr", temp);
 	}
 
-	i2c_read (0x39, 0x00, 1, &i, 1);
+	//i2c_read (0x39, 0x00, 1, &i, 1);
 	
     	if ( !(env=getenv("videostd")) || !strcmp(env,"ntsc") || !strcmp(env, "pal") )
 	    setenv ("videostd", ((i  & 0x80)?"pal":"ntsc"));
 	
-	i2c_write (0x23, 0x00, 1, rtcdata, 2);
-	i2c_read (0x23, 0x00, 1, rtcdata, 1);
+	//i2c_write (0x23, 0x00, 1, rtcdata, 2);
+	//i2c_read (0x23, 0x00, 1, rtcdata, 1);
 
 	if (rtcdata[0] == 10)
 		printf("MSP430 Firmware supports AM/PM Feature\n");

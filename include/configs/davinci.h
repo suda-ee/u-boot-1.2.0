@@ -37,7 +37,7 @@
 
 /* Flash Boot info */
 /*============================================================================*/
-#define CFG_ENV_IS_IN_FLASH 	1		/* U-Boot env in NOR Flash   */
+#undef CFG_ENV_IS_IN_FLASH 	1		/* U-Boot env in NOR Flash   */
 
 #ifndef CFG_ENV_IS_IN_FLASH
 #define CONFIG_INITRD_TAG  	1
@@ -165,6 +165,9 @@
 
 #define CONFIG_BOOTP_MASK	(CONFIG_BOOTP_DEFAULT | CONFIG_BOOTP_DNS | CONFIG_BOOTP_DNS2 | CONFIG_BOOTP_SEND_HOSTNAME)
 #define CONFIG_NET_RETRY_COUNT  10
+
+#define CONFIG_ETHADDR 00:00:5b:ee:de:ad
+#define CONFIG_ENV_OVERWRITE
 /*============================================================================*/
 
 /*============================================================================*/
